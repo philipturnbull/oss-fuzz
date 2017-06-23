@@ -43,7 +43,7 @@ for lang in ${languages[@]}; do
   fi
 
 
-  $CC $CFLAGS -g -O1 "-I${lang_dir}/src" "${lang_dir}/src/parser.c" -c -o "${lang_dir}/src/parser.o"
+  $CC $CFLAGS -g -O0 "-I${lang_dir}/src" "${lang_dir}/src/parser.c" -c -o "${lang_dir}/src/parser.o"
   objects+=("${lang_dir}/src/parser.o")
 
 
