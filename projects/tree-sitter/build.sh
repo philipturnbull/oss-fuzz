@@ -18,7 +18,6 @@
 set -x
 ./script/configure
 
-(cd ./externals/utf8proc; git reset --hard 40e605959eb5cb90b2587fa88e3b661558fbc55a) # XXX TEMP: update utf8proc to include fix for OOB read
 make -f project.Makefile
 
 languages=(go javascript ruby python c cpp typescript)
