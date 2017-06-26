@@ -17,7 +17,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
   ts_document_set_input_string_with_length(document, str, size);
 
   TSParseOptions options = {};
-  options.halt_on_error = true;
+  options.halt_on_error = FUZZ_HALT_ON_ERROR;
   ts_document_parse_with_options(document, options);
 
   TSNode root_node = ts_document_root_node(document);

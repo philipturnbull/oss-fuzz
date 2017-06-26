@@ -46,6 +46,7 @@ for lang in ${languages[@]}; do
   objects+=("${lang_dir}/src/parser.o")
 
 
-  $CXX $CXXFLAGS -std=c++11 -Iinclude -D TSLANG="tree_sitter_$lang" "../fuzzer.cc" "${objects[@]}" ./out/Release/obj.target/libruntime.a -lFuzzingEngine -o "$OUT/${lang}_fuzzer"
+  $CXX $CXXFLAGS -std=c++11 -Iinclude -D FUZZ_HALT_ON_ERROR=true -D TSLANG="tree_sitter_$lang" "../fuzzer.cc" "${objects[@]}" ./out/Release/obj.target/libruntime.a -lFuzzingEngine -o "$OUT/${lang}_fuzzer_halt"
+  $CXX $CXXFLAGS -std=c++11 -Iinclude -D FUZZ_HALT_ON_ERROR=false -D TSLANG="tree_sitter_$lang" "../fuzzer.cc" "${objects[@]}" ./out/Release/obj.target/libruntime.a -lFuzzingEngine -o "$OUT/${lang}_fuzzer"
   python $SRC/gen-dict.py "${lang_dir}/src/grammar.json" > "$OUT/$lang.dict"
 done
